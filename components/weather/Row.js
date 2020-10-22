@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import moment from 'moment';
 import 'moment/locale/fr';
 import FadeInView from '../animations/FadeInView';
@@ -8,6 +8,9 @@ moment.locale('fr');
 
 class Row extends Component {
 
+    state = {
+        selectedIndex :0
+    }
 
     day() {
         let day = moment(this.props.item.dt *1000).format('ddd')
@@ -42,33 +45,52 @@ class Row extends Component {
     }
 
     render() {
-        const {item, index} = this.props;
+        const {item, index, onPressItem, selectedIndex} = this.props;
 
-        if(index === 0){
+        if(index === selectedIndex){
             return (
                 <FadeInView delay={index * 50} >
-                    <View style={[style.view, style.flex, style.firstView]}>
+                    <View style={[style.bigView, style.flex, style.firstView]}>
                         <View>
                             <Text style={{color:'#fff'}}>{this.day()} {this.date()}</Text>
                             {this.icon(90)}
                         </View>
                         <Text style={[style.temp, {fontSize:35}]}>{Math.round(item.temp.day,0)}°C</Text>
                     </View>
+                    <View style={[style.view, style.flex, style.firstView]}>
+                        <View style={style.label}>
+                            <Text style={[style.white, style.bold]}>Matin</Text>
+                            <Text style={style.white}>{Math.round(item.temp.morn)}°C</Text>
+                            <Text style={[style.white, style.small]}>feel {Math.round(item.feels_like.morn)}°C</Text>
+                        </View>
+                        <View style={style.label}>
+                            <Text style={[style.white, style.bold]}>Après-midi</Text>
+                            <Text style={style.white}>{Math.round(item.temp.eve)}°C</Text>
+                            <Text style={[style.white, style.small]}>feel {Math.round(item.feels_like.eve)}°C</Text>
+                        </View>
+                        <View style={style.label}>
+                            <Text style={[style.white, style.bold]}>Soir</Text>
+                            <Text style={style.white}>{Math.round(item.temp.night)}°C</Text>
+                            <Text style={[style.white, style.small]}>feel {Math.round(item.feels_like.night)}°C</Text>
+                        </View>
+                    </View>
                 </FadeInView>
             )
         } else {
             return (
                 <FadeInView delay={index * 50}>
-                    <View style={[style.view, style.flex]}>
-                        <View style={style.flex}>
-                            {this.icon(42)}
-                            <Text style={{marginLeft:10}}>{this.day()} {this.date()}</Text>
+                    <TouchableOpacity onPress={() => onPressItem(index)}>
+                        <View style={[style.view, style.flex]}>
+                            <View style={style.flex}>
+                                {this.icon(42)}
+                                <Text style={{marginLeft:10}}>{this.day()} {this.date()}</Text>
+                            </View>
+                        
+                        
+                        
+                            <Text style={style.temp}>{Math.round(item.temp.day,0)}°C</Text>
                         </View>
-                    
-                    
-                    
-                        <Text style={style.temp}>{Math.round(item.temp.day,0)}°C</Text>
-                    </View>
+                    </TouchableOpacity>
                 </FadeInView>
                 
             )
@@ -87,6 +109,10 @@ const style = StyleSheet.create({
     bold: {
         fontWeight: 'bold'
     },
+    small: {
+        fontSize: 10,
+        fontWeight: '300'
+    },
     flex: {
         flex: 1,
         flexDirection: 'row',
@@ -94,7 +120,19 @@ const style = StyleSheet.create({
         alignItems: 'center'
     },
     firstView: {
-        backgroundColor: '#e54b65',
+        backgroundColor: '#e54b65'
+    },
+    label: {
+        flexDirection: 'column'
+    },
+    bigView: {
+        backgroundColor: '#394163',
+        borderWidth: 0,
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        paddingBottom: 0,
+        justifyContent: 'space-between'
+        
     },
     view: {
         backgroundColor: '#394163',
