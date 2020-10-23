@@ -34,9 +34,7 @@ class Result extends Component {
         };
 
         let url = 'https://rapidapi.p.rapidapi.com/forecast/daily?q=' + this.state.city + '&cnt=10&units=metric';
-        axios.get(url, config).then(res =>  {
-            console.log(JSON.stringify(res.data.list));
-            
+        axios.get(url, config).then(res =>  {            
             if(res.data && res.data.cod === "200"){
                 this.setState({
                     report: res.data.list
@@ -46,13 +44,12 @@ class Result extends Component {
             }
             
         }).catch(err => {
-            console.log(err);
+            console.error(err);
         })
     }
 
 
     onPressItem(index){
-        console.log('onPressItem', index);
         this.setState({selectedIndex: index})
     }
 

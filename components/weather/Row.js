@@ -6,6 +6,58 @@ import FadeInView from '../animations/FadeInView';
 
 moment.locale('fr');
 
+
+
+const style = StyleSheet.create({
+    white: {
+        color: '#FFF'
+    },
+    bold: {
+        fontWeight: 'bold'
+    },
+    small: {
+        fontSize: 10,
+        fontWeight: '300'
+    },
+    flex: {
+        flex: 1,
+        flexDirection: 'row',
+        
+        alignItems: 'center'
+    },
+    firstView: {
+        backgroundColor: '#e54b65'
+    },
+    label: {
+        flexDirection: 'column'
+    },
+    bigView: {
+        backgroundColor: '#394163',
+        borderWidth: 0,
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        paddingBottom: 0,
+        justifyContent: 'space-between'
+        
+    },
+    view: {
+        backgroundColor: '#394163',
+        borderWidth: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#202340',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        justifyContent: 'space-between'
+        
+
+    },
+    temp : {
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 22
+    }
+})
+
 class Row extends Component {
 
     state = {
@@ -101,53 +153,3 @@ class Row extends Component {
 
 export default Row
 
-
-const style = StyleSheet.create({
-    white: {
-        color: '#FFF'
-    },
-    bold: {
-        fontWeight: 'bold'
-    },
-    small: {
-        fontSize: 10,
-        fontWeight: '300'
-    },
-    flex: {
-        flex: 1,
-        flexDirection: 'row',
-        
-        alignItems: 'center'
-    },
-    firstView: {
-        backgroundColor: '#e54b65'
-    },
-    label: {
-        flexDirection: 'column'
-    },
-    bigView: {
-        backgroundColor: '#394163',
-        borderWidth: 0,
-        paddingHorizontal: 20,
-        paddingTop: 10,
-        paddingBottom: 0,
-        justifyContent: 'space-between'
-        
-    },
-    view: {
-        backgroundColor: '#394163',
-        borderWidth: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: '#202340',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        justifyContent: 'space-between'
-        
-
-    },
-    temp : {
-        color: '#FFF',
-        fontWeight: 'bold',
-        fontSize: 22
-    }
-})
