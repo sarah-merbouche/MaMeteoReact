@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
 import moment from 'moment';
 import 'moment/locale/fr';
 import FadeInView from '../animations/FadeInView';
+
 
 moment.locale('fr');
 
@@ -131,18 +132,15 @@ class Row extends Component {
         } else {
             return (
                 <FadeInView delay={index * 50}>
-                    <TouchableOpacity onPress={() => onPressItem(index)}>
+                    <TouchableWithoutFeedback onPress={() => onPressItem(index)}>
                         <View style={[style.view, style.flex]}>
                             <View style={style.flex}>
                                 {this.icon(42)}
                                 <Text style={{marginLeft:10}}>{this.day()} {this.date()}</Text>
                             </View>
-                        
-                        
-                        
                             <Text style={style.temp}>{Math.round(item.temp.day,0)}°C</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                 </FadeInView>
                 
             )

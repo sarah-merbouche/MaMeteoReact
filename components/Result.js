@@ -76,7 +76,7 @@ class Result extends Component {
                                 selectedIndex={this.state.selectedIndex}
                                 onPressItem={(index) => this.onPressItem(index)}
                                 />)}
-                        onTouchEnd={() => console.log('TouchEnd')}
+                        onTouchEnd={() => {}}
                     />
                 </SafeAreaView>
             )

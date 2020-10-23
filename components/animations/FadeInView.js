@@ -16,7 +16,7 @@ class FadeInView extends Component {
     componentDidMount(){
         Animated.sequence([
             Animated.delay(this.props.delay),
-            Animated.spring(this.state.pan, {toValue: {x:0, y: 0}})
+            Animated.spring(this.state.pan, {toValue: {x:0, y: 0},useNativeDriver: true})
         ]).start();
     }
     
